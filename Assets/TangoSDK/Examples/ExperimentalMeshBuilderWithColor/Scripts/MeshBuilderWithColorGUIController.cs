@@ -17,6 +17,8 @@
 //
 // </copyright>
 //-----------------------------------------------------------------------
+
+using System;
 using System.Collections;
 using Tango;
 using UnityEngine;
@@ -81,10 +83,8 @@ public class MeshBuilderWithColorGUIController : MonoBehaviour
 
         if (GUI.Button(new Rect(Screen.width - 160, 220, 140, 80), "<size=30>Export</size>"))
         {
-            var fileName = "Demo";
-            if (m_dynamicMesh == null)
-                fileName = "Damnit";
-            var filepath = string.Format("/temp/{0}.obj", fileName);
+            var fileName = Guid.NewGuid().ToString();
+            string filepath = string.Format("/sdcard/{0}.obj", fileName);
             m_dynamicMesh.ExportMeshToObj(filepath);
             Debug.Log(filepath);
         }
